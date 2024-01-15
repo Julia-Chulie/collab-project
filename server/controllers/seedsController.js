@@ -8,6 +8,7 @@ export const seeds = async (req,res) => {
     try {
         jsonFile.forEach( async (element) => {
             const user = new UserModel(element)
+            user.password = hashPassword(user.password)
             await user.save()
         });
     } catch (error) {
