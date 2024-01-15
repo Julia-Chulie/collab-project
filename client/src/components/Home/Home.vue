@@ -1,5 +1,15 @@
 <script setup>
+import {useAuthStore} from "../Features/user/store/authStore.js";
+import router from "../../router/index.js";
+import {onMounted} from "vue";
 
+const authStore = useAuthStore()
+
+onMounted(() => {
+  // if(!authStore.isAuthenticated){
+  //   router.push('/login')
+  // }
+})
 </script>
 
 <template>

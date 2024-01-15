@@ -7,7 +7,7 @@ const authStore = useAuthStore();
 <template>
   <header>
     <nav class="flex justify-between bg-red-500 items-center text-white h-[60px] px-5">
-      <h1 class="font-bold text-xl">Intranet</h1>
+      <router-link to="/" class="font-bold text-xl">Intranet</router-link>
       <ul class="flex flex-row gap-20">
         <li>
           <router-link to="/collaborateurs" v-if="authStore.isAuthenticated">Liste</router-link>

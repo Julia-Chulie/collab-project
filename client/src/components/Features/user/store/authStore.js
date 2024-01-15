@@ -9,6 +9,9 @@ export const useAuthStore = defineStore('authStore', {
     state: () => ({
         currentUser: null,
         userById: null,
+        loaded: false,
+        loadedUserById: false,
+        loading: false,
     }),
 
     getters: {
