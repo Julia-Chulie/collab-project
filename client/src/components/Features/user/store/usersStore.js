@@ -1,11 +1,13 @@
 import {fetchUsers} from "../../../../shared/api/user.api.js";
+import { fetchRandomUser } from "../../../../shared/api/user.api.js";
 import {defineStore} from "pinia";
 
 export const useUsersStore = defineStore('usersStore', {
     state: () => ({
         users: [],
         user: {},
-        loaded: false
+        loaded: false,
+        randomUser:{}
     }),
 
     getters: {
@@ -19,5 +21,19 @@ export const useUsersStore = defineStore('usersStore', {
             const users = await fetchUsers();
             this.users = users;
         },
+        async fetchRandomUser() {
+            this.loaded = true
+            const randomUser = await fetchRandomUser();
+            this.randomUser = randomUser;
+            this.loaded = false
+        }
     },
 })
+
+export async function initialRandomUser() {
+    const store = useUsersStore();
+    if (!store.loaded) {
+        await store.fetchRandomUser();
+        store.loaded = true;
+    }
+ }

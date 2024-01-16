@@ -18,6 +18,7 @@ const mailto = "mailto:" + props.item.email
 const telto = "tel:" + props.item.phone
 
 const birthdate = moment(props.item.birthdate).format('Do MMM')
+const image = "background-image:url('"+ props.item.photo +"')"
 
 
 const deleteUser = (id) => {
@@ -27,7 +28,7 @@ const deleteUser = (id) => {
 
 <template>
 <div class="flex shadow shadow-gray-500">
-  <div style="background-image:url('https://randomuser.me/api/portraits/men/30.jpg')" class="bg-cover bg-no-repeat w-[200px] bg-center" ></div>
+  <div :style="{ backgroundImage: 'url(' + item.photo + ')' }" class="bg-cover bg-no-repeat w-[200px] bg-center" ></div>
   <div class="flex flex-col justify-center items-start gap-2 p-10 relative">
     <div class="absolute right-0 top-0 p-1 bg-blue-400">{{ item.category }}</div>
     <div>

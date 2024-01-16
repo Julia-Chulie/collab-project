@@ -18,3 +18,8 @@ export const fetchUsers = async () => {
     const response = await instance.get("/users");
     return response.data
 }
+
+export const fetchRandomUser = async () => {
+    const response = await instance.get("/users/random");
+    return response.data
+}

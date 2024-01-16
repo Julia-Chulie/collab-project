@@ -15,9 +15,9 @@ export const seeds = async (req,res) => {
             const user = new UserModel(element);
             user.password = hashPassword(user.password);
             await user.save();
-            return  res.send('seed ok');
         });
+       return  res.send('seed ok');
     } catch (error) {
-        res.send(error);
+        return res.send(error);
     }
 }

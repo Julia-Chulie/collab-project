@@ -3,11 +3,12 @@ import Home from "../components/Home/Home.vue";
 import Login from "../components/Login/Login.vue";
 import {useAuthStore} from "../components/Features/user/store/authStore.js";
 import {AuthGuardService} from "../shared/guard/auth.guard.js";
+import { initialRandomUser } from "../components/Features/user/store/usersStore.js";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path: '/', component: Home, beforeEnter:[AuthGuardService]},
+        {path: '/', component: Home, beforeEnter:[AuthGuardService, initialRandomUser]},
         {path: '/login', component: Login},
     ]
 })

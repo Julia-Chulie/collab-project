@@ -54,3 +54,18 @@ export const deleteUser = async (req,res) => {
         return res.status(200).json(id);
     }
 }
+
+
+export const findRandomUser = async (req,res) => {
+
+    const userBdd = await UserModel.find({})
+    const users = [...userBdd]; 
+
+    const randomIndex = Math.floor(Math.random() * users.length); 
+
+    if(users[randomIndex]){
+        return res.status(200).send(users[randomIndex]);
+    }else{
+        return res.status(401).send("L'utilisateur n'existe pas");
+    }
+}

@@ -55,6 +55,10 @@ const UserSchema = new Schema({
         type: String,
         required: true ,
     },
+    photo: {
+        type: String,
+        required: true
+    },
     category: {
         type: String,
         required: true

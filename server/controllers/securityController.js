@@ -36,7 +36,7 @@ export const login = async (req,res) => {
     if(!user || hashPassword(password) !== user.password){
         res.status(403).send({message:'Identifiants incorrects'});
     }else{
-        const token = createToken(user._id,user.role,user.email,user.isAdmin);
+        const token = createToken(user._id,user.category,user.email,user.isAdmin);
 
         res.status(200).send({message:'Succès de la connexion',token:token});
     }

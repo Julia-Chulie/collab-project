@@ -30,7 +30,7 @@ const getUser = () => {
     return (token) ? jwtDecode(token) : null;
 }
 
-  const removeToken = () => {
+const removeToken = () => {
     const token = window.localStorage.getItem(key);
     if (typeof token === 'undefined' && token === null) return null;
     try {
