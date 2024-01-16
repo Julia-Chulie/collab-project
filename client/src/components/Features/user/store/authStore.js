@@ -3,6 +3,8 @@ import authStorageService from "./authStorage.js";
 import {loginApi} from '../../../../shared/api/auth.api'
 
 import {jwtDecode} from "jwt-decode";
+import {deleteUser, fetchCurrentUser} from "../../../../shared/api/user.api.js";
+import {useUsersStore} from "./usersStore.js";
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
         currentUser: null,
@@ -49,6 +51,12 @@ export const useAuthStore = defineStore('authStore', {
         async fetchCurrentUser() {
             this.currentUser = await authStorageService.getUser();
             this.loaded = true;
+        },
+
+        async deleteUser(id) {
+                await deleteUser(id);
+                const usersStore = useUsersStore();
+                await usersStore.fetchRandomUser();
         }
 
 

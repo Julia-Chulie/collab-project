@@ -23,3 +23,8 @@ export const fetchRandomUser = async () => {
     const response = await instance.get("/users/random");
     return response.data
 }
+
+export const deleteUser = async (id) => {
+    const response = await instance.delete(`/users/${id}`);
+    return response.data
+}

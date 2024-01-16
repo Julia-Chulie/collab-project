@@ -3,6 +3,7 @@ import {useAuthStore} from "../Features/user/store/authStore.js";
 import moment from "moment/min/moment-with-locales";
 import 'moment/locale/fr';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import swal from "sweetalert2";
 
 moment.locale('fr')
 
@@ -14,7 +15,25 @@ const props = defineProps(
 const authStore = useAuthStore();
 
 const deleteUser = (id) => {
-
+  swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Vous ne pourrez pas revenir en arrière !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Oui, supprimer !',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      authStore.deleteUser(id)
+      swal.fire(
+          'Supprimé !',
+          'Votre utilisateur a bien été supprimé.',
+          'success'
+      )
+    }
+  })
 }
 </script>
 
@@ -42,7 +61,7 @@ const deleteUser = (id) => {
     </div>
     <div class="flex flex-row gap-2" v-if="authStore.currentUser.isAdmin">
       <button class="p-1 font-bold bg-red-500 text-white mt-2">Modifier</button>
-      <button @click="deleteUser(item.id)" class="p-1 font-bold bg-red-500 text-white mt-2">Supprimer</button>
+      <button @click="deleteUser(item._id)" class="p-1 font-bold bg-red-500 text-white mt-2">Supprimer</button>
     </div>
 
   </div>
