@@ -2,9 +2,22 @@
 import {useAuthStore} from "../Features/user/store/authStore.js";
 import router from "../../router/index.js";
 import {onMounted} from "vue";
+import CollaborateurCard from "./CollaborateurCard.vue";
 
 const authStore = useAuthStore()
+const item =  {
+  id: 1,
+  firstname : "Jean",
+  lastname: "Dupont",
+  age: 25,
+  city: "Paris",
+  country: "France",
+  email: "test@test.fr",
+  phone: "06 06 06 06 06",
+  birthdate: "1996-06-06",
+  category: "Développeur"
 
+}
 onMounted(() => {
   // if(!authStore.isAuthenticated){
   //   router.push('/login')
@@ -19,6 +32,7 @@ onMounted(() => {
       <p class="text-xl">La plate-forme de l'entreprise qui vous permet de retrouver tous vos collaborateurs.</p>
      <p class="text-3xl">Avez-vous dis bonjour à : </p>
 
+      <CollaborateurCard :item="item" />
       <button class="p-5 font-bold bg-red-500 text-white w-max text-xl">DIRE BONJOUR À QUELQU'UN D'AUTRE</button>
     </div>
   </main>
