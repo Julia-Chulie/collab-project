@@ -1,8 +1,8 @@
-import crypto, { createHmac } from 'crypto'
-import dotenv from 'dotenv'
+import crypto, { createHmac } from 'crypto';
+import dotenv from 'dotenv';
 
-dotenv.config()
-const {SECRET_HASH} = process.env
+dotenv.config();
+const {SECRET_HASH} = process.env;
  const hashPassword = (password) => {
   
     const hash = createHmac('sha256',SECRET_HASH)

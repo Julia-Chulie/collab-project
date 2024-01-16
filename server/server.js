@@ -13,15 +13,14 @@ app.use(express.json());
 app.use(userRouter);
 
 mongoose.connect(process.env.MONGO_DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+
  }).then(init).catch((err) => {
     console.log('erssr',err);
- })
+ });
 
  async function init(){
 
     app.listen(PORT, () => {
-       console.log(`Serveur lancé sur le ${PORT} général`);
-    })
+      console.log(`Serveur lancé sur le ${PORT} général`);
+    });
 }

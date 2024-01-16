@@ -6,7 +6,7 @@ import { verifyToken } from "../middleware/AuthenticatorGuard.js";
 
 const userRouter = express.Router();
 
-// userRouter.get('/api/users/seed', seeds)
+userRouter.get('/api/users/seed', seeds)
 userRouter.get('/api/users', getUsers);
 userRouter.get('/api/users/:id', getUserById);
 

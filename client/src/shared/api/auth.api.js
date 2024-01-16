@@ -1,11 +1,5 @@
 import instance from "./axios.api.js";
 
-
-const login =  async (user) => {
+export const loginApi =  async (user) => {
     return await instance.post("/login",user)
 }
-
-
-export default login;
-
-
