@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import authStorageService from "./authStorage.js";
-import login from '../../../../shared/api/auth.api'
+import {loginApi} from '../../../../shared/api/auth.api'
 
 import {jwtDecode} from "jwt-decode";
 import {fetchCurrentUser, fetchUserById} from "../../../../shared/api/user.api";
@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('authStore', {
             console.log('user',user);
             try {
                 this.loading = true;
-                const response = await login(user)
+                const response = await loginApi(user)
                 console.log(user);
                 const token = response.data.token;
                 const decodedtoken = jwtDecode(token);

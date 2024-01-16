@@ -1,4 +1,4 @@
 import dotenv from 'dotenv';
-dotenv.config()
+dotenv.config();
 
 export const SECRET_HASH = process.env.SECRET_HASH
