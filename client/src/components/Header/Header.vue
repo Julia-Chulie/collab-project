@@ -18,7 +18,7 @@ const logout = async () => {
       <router-link to="/" class="font-bold text-xl"><font-awesome-icon :icon="['fas', 'network-wired']" /><span class="ml-1">Intranet</span></router-link>
       <ul class="flex flex-row gap-4 items-center">
         <li>
-          <router-link to="/collaborateurs" v-if="authStore.isAuthenticated"><font-awesome-icon :icon="['fas', 'list']" /><span class="ml-1">Liste</span></router-link>
+          <router-link to="/users" v-if="authStore.isAuthenticated"><font-awesome-icon :icon="['fas', 'list']" /><span class="ml-1">Liste</span></router-link>
         </li>
         <li v-if="authStore.isAuthenticated && authStore.currentUser.isAdmin">
           <router-link to="/create-user"><font-awesome-icon :icon="['fas', 'user-plus']" /><span class="ml-1">Ajouter</span></router-link>

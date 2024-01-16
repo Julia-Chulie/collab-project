@@ -7,6 +7,7 @@ export const useUsersStore = defineStore('usersStore', {
         users: [],
         user: {},
         loaded: false,
+        loadUserRandom: false,
         randomUser:{}
     }),
 
@@ -18,22 +19,32 @@ export const useUsersStore = defineStore('usersStore', {
 
     actions: {
         async fetchUsers() {
+            this.loaded = false
             const users = await fetchUsers();
             this.users = users;
+            this.loaded = true
         },
         async fetchRandomUser() {
-            this.loaded = true
+            this.loadUserRandom = false
             const randomUser = await fetchRandomUser();
             this.randomUser = randomUser;
-            this.loaded = false
+            this.loadUserRandom = true
         }
     },
 })
 
 export async function initialRandomUser() {
     const store = useUsersStore();
-    if (!store.loaded) {
+    if (!store.loadUserRandom) {
         await store.fetchRandomUser();
+        store.loadUserRandom = true;
+    }
+}
+
+export async function initialFetchUsers() {
+    const store = useUsersStore();
+    if (!store.loaded) {
+        await store.fetchUsers();
         store.loaded = true;
     }
- }
+}

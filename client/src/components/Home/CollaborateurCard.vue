@@ -39,7 +39,7 @@ const deleteUser = (id) => {
 </script>
 
 <template>
-<div class="flex shadow shadow-gray-500">
+<div class="flex shadow shadow-gray-500 m-2 card" >
   <div :style="{ backgroundImage: 'url(' + item.photo + ')' }" class="bg-cover bg-no-repeat w-[200px] bg-center" ></div>
   <div class="flex flex-col justify-center items-start gap-2 p-10 relative">
     <div class='absolute right-0 top-0 p-1 text-white font-bold' :class="{'bg-blue-400': (item.category === 'Technique'), 'bg-rose-300': (item.category === 'Marketing'), 'bg-green-400': (item.category === 'Client')} ">{{ item.category }}</div>
@@ -70,5 +70,9 @@ const deleteUser = (id) => {
 </template>
 
 <style scoped>
-
+  .card{
+    height: 14rem;
+    width: 34rem;
+    justify-content: space-between;
+  }
 </style>
