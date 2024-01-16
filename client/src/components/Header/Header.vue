@@ -15,9 +15,14 @@ const logout = async () => {
   <header>
     <nav class="flex justify-between bg-red-500 items-center text-white h-[60px] px-5">
       <router-link to="/" class="font-bold text-xl"><font-awesome-icon :icon="['fas', 'network-wired']" /><span class="ml-1">Intranet</span></router-link>
-      <ul class="flex flex-row gap-4">
+      <ul class="flex flex-row gap-4 items-center">
         <li>
           <router-link to="/collaborateurs" v-if="authStore.isAuthenticated"><font-awesome-icon :icon="['fas', 'list']" /><span class="ml-1">Liste</span></router-link>
+        </li>
+        <li>
+          <router-link to="/update" v-if="authStore.isAuthenticated" @click="logout()">
+            <img style="width: 48px;height: 48px; border-radius: 50%;" :src="authStore.currentUser.photo">
+          </router-link>
         </li>
         <li>
           <router-link to="/logout" v-if="authStore.isAuthenticated" @click="logout()"><font-awesome-icon :icon="['fas', 'right-from-bracket']" /><span class="ml-1">Déconnexion</span></router-link>

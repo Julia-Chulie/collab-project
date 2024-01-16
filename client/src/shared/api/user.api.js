@@ -1,4 +1,4 @@
-import authStorageService from "../../../../../zizou-4-ever/client/src/components/Features/user/store/authStorage.js";
+import authStorageService from "../../components/Features/user/store/authStorage.js";
 import instance from "./axios.api.js";
 
 export const fetchCurrentUser = async () => {

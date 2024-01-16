@@ -30,13 +30,15 @@ import { createToken } from '../utils/createToken.js';
 //     }
 // }
 
+
 export const login = async (req,res) => {
     const {password,email} = req.body;
     const user = await UserModel.findOne({email}).exec();
     if(!user || hashPassword(password) !== user.password){
         res.status(403).send({message:'Identifiants incorrects'});
     }else{
-        const token = createToken(user._id,user.category,user.email,user.isAdmin);
+        console.log(user.photo);
+        const token = createToken(user._id,user.category,user.email,user.isAdmin,user.photo);
 
         res.status(200).send({message:'Succès de la connexion',token:token});
     }

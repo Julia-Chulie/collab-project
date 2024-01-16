@@ -1,5 +1,5 @@
 <script setup>
-import {useAuthStore} from "../Features/user/store/authStore.js";
+import { useAuthStore } from "../Features/user/store/authStore.js";
 import moment from "moment/min/moment-with-locales";
 import 'moment/locale/fr';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -35,6 +35,7 @@ const deleteUser = (id) => {
     }
   })
 }
+
 </script>
 
 <template>
