@@ -7,19 +7,6 @@ import CollaborateurCard from "./CollaborateurCard.vue";
 
 const authStore = useAuthStore()
 const usersStore = useUsersStore()
-// const item =  {
-//   id: 1,
-//   firstname : "Jean",
-//   lastname: "Dupont",
-//   age: 25,
-//   city: "Paris",
-//   country: "France",
-//   email: "test@test.fr",
-//   phone: "06 06 06 06 06",
-//   birthdate: "1996-06-06",
-//   category: "Développeur"
-
-// }
 
 const sayHello = async () => {
   try {
