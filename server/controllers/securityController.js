@@ -33,7 +33,7 @@ import { createToken } from '../utils/createToken.js';
 
 
 export const login = async (req,res) => {
-    
+    console.log('cacaca');
     const {password,email} = req.body
     const user = await UserModel.findOne({email}).exec();
     if(!user || hashPassword(password) !== user.password){
