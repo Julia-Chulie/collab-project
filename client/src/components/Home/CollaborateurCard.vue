@@ -14,13 +14,6 @@ const props = defineProps(
 const authStore = useAuthStore();
 
 
-const mailto = "mailto:" + props.item.email
-const telto = "tel:" + props.item.phone
-
-const birthdate = moment(props.item.birthdate).format('Do MMM')
-const image = "background-image:url('"+ props.item.photo +"')"
-
-
 const deleteUser = (id) => {
 
 }
@@ -33,20 +26,20 @@ const deleteUser = (id) => {
     <div class="absolute right-0 top-0 p-1 bg-blue-400">{{ item.category }}</div>
     <div>
       <strong>{{ item.firstname }} {{ item.lastname }}</strong>
-      <span class="text-gray-400 pl-1">({{ item.age }} ans)</span>
+      <span class="text-gray-400 pl-1">({{ moment().diff(item.birthdate, 'years') }} ans)</span>
     </div>
     <span class="text-gray-400">{{ item.city }}, {{ item.country }}</span>
     <div>
       <font-awesome-icon :icon="['fas', 'envelope']" class="text-gray-500 mr-1"/>
-      <a class="text-rose-600 underline" :href="mailto">{{ item.email }}</a>
+      <a class="text-rose-600 underline" :href="'mailto:' + item.email">{{ item.email }}</a>
     </div>
     <div>
       <font-awesome-icon :icon="['fas', 'phone']" class="text-gray-500 mr-1"/>
-      <a class="text-rose-600 underline" :href="telto">{{ item.phone }}</a>
+      <a class="text-rose-600 underline" :href="'tel:' + item.phone">{{ item.phone }}</a>
     </div>
     <div>
       <font-awesome-icon :icon="['fas', 'cake-candles']" class="text-gray-500 mr-1"/>
-      <a class="text-gray-400">Anniversaire : {{ birthdate }}</a>
+      <a class="text-gray-400">Anniversaire : {{ moment(item.birthdate).format('Do MMM') }}</a>
     </div>
     <div class="flex flex-row gap-2" v-if="authStore.currentUser.isAdmin">
       <button class="p-1 font-bold bg-red-500 text-white mt-2">Modifier</button>
