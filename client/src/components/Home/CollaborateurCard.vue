@@ -13,10 +13,12 @@ const props = defineProps(
 )
 const authStore = useAuthStore();
 
+
 const mailto = "mailto:" + props.item.email
 const telto = "tel:" + props.item.phone
 
 const birthdate = moment(props.item.birthdate).format('Do MMM')
+
 
 const deleteUser = (id) => {
 
@@ -45,12 +47,10 @@ const deleteUser = (id) => {
       <font-awesome-icon :icon="['fas', 'cake-candles']" class="text-gray-500 mr-1"/>
       <a class="text-gray-400">Anniversaire : {{ birthdate }}</a>
     </div>
-    <div class="flex flex-row gap-2" v-if="authStore.currentUser">
-      <router-link :to="{name: 'edit', params: {id: item.id}}" class="text-gray-400 underline">Modifier</router-link>
-      <button @click="deleteUser(item.id)" class="text-gray-400 underline">Supprimer</button>
+    <div class="flex flex-row gap-2" v-if="authStore.currentUser.isAdmin">
+      <button class="p-1 font-bold bg-red-500 text-white mt-2">Modifier</button>
+      <button @click="deleteUser(item.id)" class="p-1 font-bold bg-red-500 text-white mt-2">Supprimer</button>
     </div>
-
-
 
   </div>
 </div>

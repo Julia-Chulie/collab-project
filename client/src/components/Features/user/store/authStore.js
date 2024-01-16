@@ -3,8 +3,6 @@ import authStorageService from "./authStorage.js";
 import {loginApi} from '../../../../shared/api/auth.api'
 
 import {jwtDecode} from "jwt-decode";
-import {fetchCurrentUser, fetchUserById} from "../../../../shared/api/user.api";
-
 export const useAuthStore = defineStore('authStore', {
     state: () => ({
         currentUser: null,
@@ -33,10 +31,10 @@ export const useAuthStore = defineStore('authStore', {
             try {
                 this.loading = true;
                 const response = await loginApi(user)
-                console.log(user);
                 const token = response.data.token;
                 const decodedtoken = jwtDecode(token);
                 authStorageService.saveToken(token);
+                this.currentUser = decodedtoken;
 
             } catch (error) {
                console.log(error);
@@ -47,6 +45,11 @@ export const useAuthStore = defineStore('authStore', {
             authStorageService.removeToken();
             this.currentUser = null;
         },
+
+        async fetchCurrentUser() {
+            this.currentUser = await authStorageService.getUser();
+            this.loaded = true;
+        }
 
 
     },
