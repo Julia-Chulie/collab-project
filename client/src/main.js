@@ -13,14 +13,14 @@ import {
     faList,
     faNetworkWired,
     faPhone,
-    faRightFromBracket
+    faRightFromBracket, faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 
 const app = createApp(App)
 
 /* add font awesome icon component */
-library.add(faCakeCandles, faPhone, faEnvelope, faRightFromBracket, faList, faNetworkWired)
+library.add(faCakeCandles, faPhone, faEnvelope, faRightFromBracket, faList, faNetworkWired, faUserPlus)
 
 app.use(createPinia())
 app.use(router)

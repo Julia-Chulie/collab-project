@@ -28,3 +28,8 @@ export const deleteUser = async (id) => {
     const response = await instance.delete(`/users/${id}`);
     return response.data
 }
+
+export const createUser = async (user) => {
+    const response = await instance.post("/users",user);
+    return response.data
+}

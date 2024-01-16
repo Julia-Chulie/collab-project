@@ -1,6 +1,7 @@
 <script setup>
 import {useAuthStore} from "../Features/user/store/authStore.js";
 import router from "../../router/index.js";
+import authStorageService from "../Features/user/store/authStorage.js";
 
 const authStore = useAuthStore();
 
@@ -18,6 +19,9 @@ const logout = async () => {
       <ul class="flex flex-row gap-4 items-center">
         <li>
           <router-link to="/collaborateurs" v-if="authStore.isAuthenticated"><font-awesome-icon :icon="['fas', 'list']" /><span class="ml-1">Liste</span></router-link>
+        </li>
+        <li v-if="authStore.isAuthenticated && authStore.currentUser.isAdmin">
+          <router-link to="/create-user"><font-awesome-icon :icon="['fas', 'user-plus']" /><span class="ml-1">Ajouter</span></router-link>
         </li>
         <li>
           <router-link to="/update" v-if="authStore.isAuthenticated" @click="logout()">

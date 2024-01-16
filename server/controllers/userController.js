@@ -24,6 +24,9 @@ export const createUser = async (req,res) => {
     try {
         const user = new UserModel(req.body); 
 
+        if(user.password.length < 8){
+            res.status(401).send({error: "Le mot de passe doit contenir au moins 8 caractères"});
+        }
         user.password = hashPassword(user.password);
         await user.save();
         
