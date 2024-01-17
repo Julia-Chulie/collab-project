@@ -83,7 +83,7 @@ const updateUserForm = () => {
 
 <template>
 
-  <main class="flex items-center justify-center py-[100px] w-full h-full">
+  <main class="flex items-center justify-center py-[50px] w-full h-full">
     <div class="flex flex-col gap-10 text-center items-center justify-center w-full">
       <h1 class="text-5xl font-bold" v-if="authStore.userById?._id === authStore.currentUser._id">Modifier mon
         profil</h1>
@@ -142,7 +142,7 @@ const updateUserForm = () => {
                    placeholder="https://" required>
           </div>
         </div>
-        <button type="submit" class="p-5 font-bold bg-red-500 text-white w-max text-xl mt-5">MODIFIER</button>
+        <button type="submit" class="p-5 font-bold text-white w-max text-xl mt-5">MODIFIER</button>
       </form>
     </div>
   </main>
@@ -150,5 +150,7 @@ const updateUserForm = () => {
 </template>
 
 <style scoped>
-
+button{
+  background-color:  #EE4560;
+}
 </style>

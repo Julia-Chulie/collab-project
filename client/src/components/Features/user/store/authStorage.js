@@ -26,7 +26,6 @@ const isAuthValide = () => {
 
 const getUser = () => {
     const token = getToken()
-    console.log('Token');
     return (token) ? jwtDecode(token) : null;
 }
 

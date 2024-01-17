@@ -31,11 +31,13 @@ onMounted(() => {
      <p class="text-3xl">Avez-vous dis bonjour à : </p>
 
       <CollaborateurCard :item=usersStore.randomUser />
-      <button @click="sayHello" class="p-5 font-bold bg-red-500 text-white w-max text-xl">DIRE BONJOUR À QUELQU'UN D'AUTRE</button>
+      <button @click="sayHello" class="p-5 font-bold text-white w-max text-xl">DIRE BONJOUR À QUELQU'UN D'AUTRE</button>
     </div>
   </main>
 </template>
 
 <style scoped>
-
+button{
+  background-color: #F35757;
+}
 </style>
