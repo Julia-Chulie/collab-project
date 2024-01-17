@@ -9,7 +9,7 @@ export const fetchCurrentUser = async () => {
 }
 
 export  const fetchUserById = async (id) => {
-    const response = await instance.get(`/users/user/${id}`);
+    const response = await instance.get(`/users/${id}`);
 
     return response.data
 }
@@ -31,5 +31,10 @@ export const deleteUser = async (id) => {
 
 export const createUser = async (user) => {
     const response = await instance.post("/users",user);
+    return response.data
+}
+
+export const updateUser = async (id,user) => {
+    const response = await instance.put(`/users/${id}`,user);
     return response.data
 }

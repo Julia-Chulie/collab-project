@@ -24,8 +24,8 @@ const logout = async () => {
           <router-link to="/create-user"><font-awesome-icon :icon="['fas', 'user-plus']" /><span class="ml-1">Ajouter</span></router-link>
         </li>
         <li>
-          <router-link to="/update" v-if="authStore.isAuthenticated" @click="logout()">
-            <img style="width: 48px;height: 48px; border-radius: 50%;" :src="authStore.currentUser.photo">
+          <router-link :to="'/update-user/'+authStore.currentUser._id" v-if="authStore.isAuthenticated">
+            <img style="width: 48px;height: 48px; border-radius: 50%;" :src="authStore.currentUser.photo" alt="Image de profil">
           </router-link>
         </li>
         <li>

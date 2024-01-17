@@ -62,7 +62,7 @@ const deleteUser = (id) => {
       <a class="text-gray-400">Anniversaire : {{ moment(item.birthdate).format('Do MMM') }}</a>
     </div>
     <div class="flex flex-row gap-2" v-if="authStore.currentUser.isAdmin">
-      <button class="p-1 font-bold bg-red-500 text-white mt-2">Modifier</button>
+      <router-link :to="'/update-user/' + item._id" class="p-1 font-bold bg-red-500 text-white mt-2">Modifier</router-link>
       <button @click="deleteUser(item._id)" class="p-1 font-bold bg-red-500 text-white mt-2">Supprimer</button>
     </div>
 
