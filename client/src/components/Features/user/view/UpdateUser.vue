@@ -13,7 +13,7 @@ const category = ref(authStore.userById.category);
 const firstName = ref(authStore.userById.firstname);
 const lastName = ref(authStore.userById.lastname);
 const email = ref(authStore.userById.email);
-const password = ref(authStore.userById.password);
+const password = ref('');
 const confirmPassword = ref('')
 const phone = ref(authStore.userById.phone);
 const birthdate = ref(moment(authStore.userById.birthdate).format('YYYY-MM-DD'));
@@ -25,9 +25,36 @@ console.log(useAuthStore().userById)
 
 const error = ref("")
 
+const updateUserFunc = (id, user) => {
+  updateUser(id, user)
+      .then(() => {
+        swal.fire({
+          title: 'Utilisateur modifié',
+          text: 'L\'utilisateur a bien été modifié',
+          icon: 'success',
+          confirmButtonText: 'Fermer'
+        })
+      })
+      .catch((err) => {
+        error.value = err.response?.data.error
+      })
+}
+
 const updateUserForm = () => {
   if (password.value.length < 8) {
-    error.value = "Le mot de passe doit contenir au moins 8 caractères"
+    const user = {
+      gender: gender.value,
+      category: category.value,
+      firstname: firstName.value,
+      lastname: lastName.value,
+      email: email.value,
+      phone: phone.value,
+      birthdate: birthdate.value,
+      city: city.value,
+      country: country.value,
+      photo: photo.value
+    }
+    updateUserFunc(authStore.userById._id, user)
   } else {
     error.value = ""
     const user = {
@@ -47,20 +74,10 @@ const updateUserForm = () => {
       error.value = "Les mots de passe ne correspondent pas"
     } else {
       error.value = ""
-      updateUser(authStore.userById._id, user)
-          .then(() => {
-            swal.fire({
-              title: 'Utilisateur modifié',
-              text: 'L\'utilisateur a bien été modifié',
-              icon: 'success',
-              confirmButtonText: 'Fermer'
-            })
-          })
-          .catch((err) => {
-            error.value = err.response?.data.error
-          })
+      updateUserFunc(authStore.userById._id, user)
     }
   }
+
 }
 </script>
 
@@ -82,8 +99,8 @@ const updateUserForm = () => {
             <label for="firstName" class="w-full h-10">*Prénom : </label>
             <label for="lastName" class="w-full h-10">*Nom : </label>
             <label for="email" class="w-full h-10">*Email : </label>
-            <label for="password" class="w-full h-10">*Mot de passe : </label>
-            <label for="confirmPassword" class="w-full h-10">*Confirmation : </label>
+            <label for="password" class="w-full h-10">Mot de passe : </label>
+            <label for="confirmPassword" class="w-full h-10">Confirmation : </label>
             <label for="phone" class="w-full h-10">*Téléphone : </label>
             <label for="birthdate" class="w-full h-10">*Date de naissance : </label>
             <label for="city" class="w-full h-10">*Ville : </label>
@@ -108,10 +125,10 @@ const updateUserForm = () => {
             <input type="email" id="email" v-model="email" class="border-[1px] border-gray-400 p-2 w-full h-10"
                    placeholder="john.smith@email.com" required>
             <input type="password" id="password" v-model="password" class="border-[1px] border-gray-400 p-2 w-full h-10"
-                   placeholder="(min 8 caractères)" required>
+                   placeholder="(min 8 caractères)">
             <input type="password" id="confirmPassword" v-model="confirmPassword"
                    class="border-[1px] border-gray-400 p-2 w-full h-10"
-                   placeholder="(min 8 caractères)" required>
+                   placeholder="(min 8 caractères)">
 
             <input type="text" id="phone" v-model="phone" class="border-[1px] border-gray-400 p-2 w-full h-10"
                    placeholder="0600000000" required>
