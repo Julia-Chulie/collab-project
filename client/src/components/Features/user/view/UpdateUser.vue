@@ -4,10 +4,11 @@ import {createUser, updateUser} from "../../../../shared/api/user.api.js";
 import swal from "sweetalert2";
 import {useAuthStore} from "../store/authStore.js";
 import moment from "moment";
+import { useUsersStore } from "../store/usersStore";
 
 const authStore = useAuthStore()
 
-
+const store = useUsersStore()
 const gender = ref(authStore.userById.gender);
 const category = ref(authStore.userById.category);
 const firstName = ref(authStore.userById.firstname);
@@ -33,7 +34,8 @@ const updateUserFunc = (id, user) => {
           text: 'L\'utilisateur a bien été modifié',
           icon: 'success',
           confirmButtonText: 'Fermer'
-        })
+        }),
+        store.fetchUsers()
       })
       .catch((err) => {
         error.value = err.response?.data.error

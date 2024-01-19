@@ -1,5 +1,6 @@
 import authStorageService from "../../components/Features/user/store/authStorage.js";
 import instance from "./axios.api.js";
+import { useUsersStore } from "../../components/Features/user/store/usersStore.js";
 
 export const fetchCurrentUser = async () => {
     const token = authStorageService.getToken();
@@ -26,6 +27,8 @@ export const fetchRandomUser = async () => {
 
 export const deleteUser = async (id) => {
     const response = await instance.delete(`/users/${id}`);
+    const store = useUsersStore()
+    store.fetchUsers()
     return response.data
 }
 

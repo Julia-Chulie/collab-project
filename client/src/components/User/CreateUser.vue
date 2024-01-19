@@ -2,7 +2,9 @@
 import {ref} from "vue";
 import {createUser} from "../../shared/api/user.api.js";
 import swal from "sweetalert2";
+import { useUsersStore } from "../Features/user/store/usersStore";
 
+const store = useUsersStore() 
 const gender = ref("");
 const category = ref("");
 const firstName = ref("");
@@ -42,7 +44,8 @@ const createUserForm =  () => {
             text: 'L\'utilisateur a bien été créé',
             icon: 'success',
             confirmButtonText: 'Fermer'
-          })
+          }),
+          store.fetchUsers()
         })
         .catch((err) => {
           error.value = err.response?.data.error
